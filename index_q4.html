@@ -33,13 +33,14 @@
         font-family: "Geist", sans-serif;
     }
 
-    .question-title {
+    .q-word {
         margin-bottom: 5vw;
     }
 
     html,
     body {
         height: 100%;
+        overflow: hidden;
         font-family: "Geist", sans-serif;
         background: #EEEDFE;
         display: flexbox;
@@ -59,6 +60,11 @@
         box-shadow: 0 2px 0 #AFA9EC;
         font-family: "Geist", sans-serif;
         font-size: 1rem;
+    }
+
+    p {
+        color: #CECBF6;
+        font-weight: bold;
     }
 
     .btn.selected-correct {
@@ -95,37 +101,42 @@
         background-color: #EEEDFE;
     }
 
-    .feedback {
+    .correct {
+        background-color: #085041;
         border-radius: 8px;
         margin: 0.5rem;
         padding: 1rem;
-        display: none;
+        display: flex;
         align-items: flex-start;
         gap: 0.5rem;
+        color: #9FE1CB;
         font-family: "Geist", sans-serif;
         font-weight: 400;
     }
 
-    .correct {
-        background-color: #085041;
+    .tick {
+        width: 1rem;
+        height: 1rem;
+        padding: 0.3rem 0.3rem;
+        border: 0.05rem solid #9FE1CB;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.5rem;
         color: #9FE1CB;
-    }
-
-    .wrong {
-        background-color: #8b0616;
-        color: #edacac;
     }
 
     .feedback-title {
         color: #ffffff;
-        font-size: 1rem;
+        font-size: small;
         font-weight: 500;
-        margin-bottom: 1rem;
     }
 
     .feedback-body {
+        color: #9FE1CB;
         font-weight: 400;
-        font-size: 0.9rem;
+        font-size: small;
         display: flex;
         flex-direction: column;
     }
@@ -138,8 +149,8 @@
     .feedback-fact {
         color: #ffffff;
         font-family: "Geist", sans-serif;
-        font-weight: 300;
-        font-size: 0.9rem;
+        font-weight: 200;
+        font-size: small;
         margin-top: 1rem;
 
     }
@@ -147,24 +158,26 @@
 
 <body>
     <div class="title question">
-        <p class="question-title">QUESTION</p>
-        <h2>Quel objet du Système solaire contient plus de masse que toutes les planètes réunies?</h2>
+        <p class="q-word">QUESTION 1</p>
+        <h1>Quel animal possède le plus grand nombre de dents?</h2>
     </div>
 
     <div class="btn-list">
-        <button class="btn" value="wrong" onclick="select(this)"><span class="letter">A</span> Jupiter</button>
-        <button class="btn" value="wrong" onclick="select(this)""><span class=" letter">B</span> Saturne</button>
-        <button class=" btn" value="wrong" onclick="select(this)""><span class=" letter">C</span> La ceinture de
-            Kuiper</button>
-        <button class=" btn" value="correct" onclick="select(this)""><span class=" letter">D</span> Le Soleil </button>
+        <button class="btn" value="wrong" onclick="select(this)"><span class="letter">A</span> Le requin</button>
+        <button class="btn" value="correct" onclick="select(this)""><span class=" letter">B</span> L’escargot</button>
+        <button class=" btn" value="wrong" onclick="select(this)""><span class=" letter">C</span> Le crocodile</button>
+        <button class=" btn" value="wrong" onclick="select(this)""><span class=" letter">D</span> Le dauphin</button>
     </div>
 
-    <div class="feedback">
-        <div class="feedback-text">
-            <span class="feedback-title">Bravo!</span>
-            <p class="feedback-body">Le Soleil contient environ 99,86 % de toute la masse du Système solaire. Même
-                Jupiter, pourtant gigantesque, ne représente qu’environ 0,1 %.</p>
-            <span class="feedback-fact">Fais 15 pas dans la direction de nord-est!</span>
+    <div class="feedback hidden">
+        <div class="correct hidden">
+            <span class="tick">✔</span>
+            <div class="feedback-text">
+                <span class="feedback-title">Bravo!</span>
+                <p class="feedback-body">Certaines espèces ont des milliers de minuscules dents sur leur langue
+                    appelée radula.</p>
+                <p class="feedback-fact">Fais 15 pas dans la direction de nord-est!</p>
+            </div>
         </div>
     </div>
 
@@ -175,38 +188,29 @@
     const correctAnswer = document.querySelector('.correct');
     const wrongAnswer = document.querySelector('.wrong');
     const feedback = document.querySelector('.feedback');
-    const feedbackTitle = document.querySelector('.feedback-title');
-    const feedbackFact = document.querySelector('.feedback-fact');
-
-
 
     function select(btn) {
         const letter = btn.querySelector('.letter');
-
         selectedButtons.forEach(b => b.classList.remove('selected'));
-        feedback.style.display = "flex";
 
         if (btn.value === 'correct') {
             btn.classList.add('selected-correct');
             feedback.classList.remove("hidden");
-            feedback.classList.add("correct");
+            correctAnswer.classList.remove("hidden");
             letter.innerHTML = '✓';
             letter.style.backgroundColor = '#5DCAA5';
-            feedbackTitle.classList.remove('hidden');
+            selectedButtons.forEach(b => b.value !== 'correct' ? b.disabled = true : b);
 
         } else {
             btn.classList.add('selected-wrong');
             letter.innerHTML = '✗';
             letter.style.backgroundColor = '#E24B4A';
-            feedback.classList.remove("hidden");
-            feedback.classList.add("wrong");
-            feedbackTitle.innerHTML = 'Oopsi!';
-            feedbackTitle.classList.remove('hidden');
-            feedbackFact.innerHTML = "Va dans la direction de nord-est!";
+            setTimeout(() => {
+                btn.classList.remove('selected-wrong')
+            }, 1000);
 
         }
-        selectedButtons.forEach(b => b.disabled = true);
-    } </script>
+    } function checkAnswer(btn) { } </script>
 
 
 
