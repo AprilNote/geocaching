@@ -2,7 +2,6 @@
 <html lang="en">
 
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,35 +22,44 @@
         height: 100%;
         display: flex;
         flex-direction: column;
+        width: 100%;
+        overflow-x: hidden;
     }
 
     .question {
         background-color: #534AB7;
-        max-width: 100vw;
-        padding: 10vw;
+        max-width: 100%;
+        height: 30%;
+        padding: 1rem;
+        padding-bottom: 1.5rem;
         color: #ffffff;
         font-family: "Geist", sans-serif;
+
     }
 
-    .q-word {
+    .question-title {
         margin-bottom: 5vw;
+        margin-top: 5vw;
     }
 
     html,
     body {
         height: 100%;
-        overflow: hidden;
+        max-width: 100%;
+        overflow-x: hidden;
         font-family: "Geist", sans-serif;
         background: #EEEDFE;
-        display: flexbox;
         justify-content: center;
         padding: 0;
+        margin: 0;
+        width: 100%;
+        overflow-x: hidden;
+
     }
 
     .btn {
         border: 1px solid #ccc;
         border-radius: 8px;
-        margin: 0.4rem;
         padding: 0.5rem;
         display: flex;
         align-items: center;
@@ -60,11 +68,13 @@
         box-shadow: 0 2px 0 #AFA9EC;
         font-family: "Geist", sans-serif;
         font-size: 1rem;
-    }
-
-    p {
-        color: #CECBF6;
-        font-weight: bold;
+        text-align: left;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
     }
 
     .btn.selected-correct {
@@ -85,6 +95,8 @@
         display: flex;
         flex-direction: column;
         margin-top: -0.9rem;
+        width: 100%;
+        padding: 0 0.4rem;
     }
 
     .hidden {
@@ -92,8 +104,9 @@
     }
 
     .letter {
-        width: 30px;
-        height: 30px;
+        width: 1.6rem;
+        height: 1.6rem;
+        min-width: 1.6rem;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -101,42 +114,37 @@
         background-color: #EEEDFE;
     }
 
-    .correct {
-        background-color: #085041;
+    .feedback {
         border-radius: 8px;
         margin: 0.5rem;
         padding: 1rem;
-        display: flex;
+        display: none;
         align-items: flex-start;
         gap: 0.5rem;
-        color: #9FE1CB;
         font-family: "Geist", sans-serif;
         font-weight: 400;
     }
 
-    .tick {
-        width: 1rem;
-        height: 1rem;
-        padding: 0.3rem 0.3rem;
-        border: 0.05rem solid #9FE1CB;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.5rem;
+    .correct {
+        background-color: #085041;
         color: #9FE1CB;
+    }
+
+    .wrong {
+        background-color: #8b0616;
+        color: #edacac;
     }
 
     .feedback-title {
         color: #ffffff;
-        font-size: small;
+        font-size: 1rem;
         font-weight: 500;
+        margin-bottom: 1rem;
     }
 
     .feedback-body {
-        color: #9FE1CB;
         font-weight: 400;
-        font-size: small;
+        font-size: 0.9rem;
         display: flex;
         flex-direction: column;
     }
@@ -149,8 +157,8 @@
     .feedback-fact {
         color: #ffffff;
         font-family: "Geist", sans-serif;
-        font-weight: 200;
-        font-size: small;
+        font-weight: 300;
+        font-size: 0.9rem;
         margin-top: 1rem;
 
     }
@@ -158,26 +166,27 @@
 
 <body>
     <div class="title question">
-        <p class="q-word">QUESTION 1</p>
-        <h1>Quel animal possède le plus grand nombre de dents?</h2>
+        <p class="question-title">QUESTION</p>
+        <h2>Quel est l’animal connu pour posséder la morsure la plus puissante par rapport à sa taille?</h2>
     </div>
 
     <div class="btn-list">
-        <button class="btn" value="wrong" onclick="select(this)"><span class="letter">A</span> Le requin</button>
-        <button class="btn" value="correct" onclick="select(this)""><span class=" letter">B</span> L’escargot</button>
-        <button class=" btn" value="wrong" onclick="select(this)""><span class=" letter">C</span> Le crocodile</button>
-        <button class=" btn" value="wrong" onclick="select(this)""><span class=" letter">D</span> Le dauphin</button>
+        <button class="btn" value="wrong" onclick="select(this)"><span class="letter">A</span>Le crocodile
+            marin</button>
+        <button class="btn" value="wrong" onclick="select(this)""><span class=" letter">B</span>La hyène
+        </button>
+        <button class=" btn" value="wrong" onclick="select(this)""><span class=" letter">C</span>La fourmi
+            piège</button>
+        <button class=" btn" value="correct" onclick="select(this)""><span class=" letter">D</span>Le diable de
+            Tasmanie</button>
     </div>
 
-    <div class="feedback hidden">
-        <div class="correct hidden">
-            <span class="tick">✔</span>
-            <div class="feedback-text">
-                <span class="feedback-title">Bravo!</span>
-                <p class="feedback-body">Certaines espèces ont des milliers de minuscules dents sur leur langue
-                    appelée radula.</p>
-                <p class="feedback-fact">Fais 15 pas dans la direction de nord-est!</p>
-            </div>
+    <div class="feedback">
+        <div class="feedback-text">
+            <span class="feedback-title">Bravo!</span>
+            <p class="feedback-body">Rapportée à sa taille, la morsure du diable de Tasmanie est extrêmement puissante,
+                adaptée pour broyer des os.</p>
+            <span class="feedback-fact">Fais 15 pas dans la direction de nord-est!</span>
         </div>
     </div>
 
@@ -185,32 +194,36 @@
 
 <script>
     const selectedButtons = document.querySelectorAll('.btn');
-    const correctAnswer = document.querySelector('.correct');
-    const wrongAnswer = document.querySelector('.wrong');
     const feedback = document.querySelector('.feedback');
+    const feedbackTitle = document.querySelector('.feedback-title');
+    const feedbackFact = document.querySelector('.feedback-fact');
 
     function select(btn) {
         const letter = btn.querySelector('.letter');
+
         selectedButtons.forEach(b => b.classList.remove('selected'));
+        feedback.style.display = "flex";
 
         if (btn.value === 'correct') {
             btn.classList.add('selected-correct');
             feedback.classList.remove("hidden");
-            correctAnswer.classList.remove("hidden");
+            feedback.classList.add("correct");
             letter.innerHTML = '✓';
             letter.style.backgroundColor = '#5DCAA5';
-            selectedButtons.forEach(b => b.value !== 'correct' ? b.disabled = true : b);
+            feedbackTitle.classList.remove('hidden');
 
         } else {
             btn.classList.add('selected-wrong');
             letter.innerHTML = '✗';
             letter.style.backgroundColor = '#E24B4A';
-            setTimeout(() => {
-                btn.classList.remove('selected-wrong')
-            }, 1000);
-
+            feedback.classList.remove("hidden");
+            feedback.classList.add("wrong");
+            feedbackTitle.innerHTML = 'Oopsi!';
+            feedbackTitle.classList.remove('hidden');
+            feedbackFact.innerHTML = "Va dans la direction de nord-est!";
         }
-    } function checkAnswer(btn) { } </script>
+        selectedButtons.forEach(b => b.disabled = true);
+    } </script>
 
 
 
