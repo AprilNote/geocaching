@@ -152,11 +152,11 @@
     </div>
 
     <div class="btn-list">
-        <button class="btn" value="wrong" onclick="select(this)"><span class="letter">A</span> Jupiter</button>
-        <button class="btn" value="wrong" onclick="select(this)""><span class=" letter">B</span> Saturne</button>
-        <button class=" btn" value="wrong" onclick="select(this)""><span class=" letter">C</span> La ceinture de
+        <button class="btn" value="wrong" onclick="select(this)"><span class="letter">A</span>Jupiter</button>
+        <button class="btn" value="wrong" onclick="select(this)""><span class=" letter">B</span>Saturne</button>
+        <button class=" btn" value="wrong" onclick="select(this)""><span class=" letter">C</span>La ceinture de
             Kuiper</button>
-        <button class=" btn" value="correct" onclick="select(this)""><span class=" letter">D</span> Le Soleil </button>
+        <button class=" btn" value="correct" onclick="select(this)""><span class=" letter">D</span>Le Soleil</button>
     </div>
 
     <div class="feedback">
@@ -164,7 +164,7 @@
             <span class="feedback-title">Bravo!</span>
             <p class="feedback-body">Le Soleil contient environ 99,86 % de toute la masse du Système solaire. Même
                 Jupiter, pourtant gigantesque, ne représente qu’environ 0,1 %.</p>
-            <span class="feedback-fact">Fais 15 pas dans la direction de nord-est!</span>
+            <span class="feedback-fact">126&deg; SE - 6 pas; </span>
         </div>
     </div>
 
@@ -172,13 +172,9 @@
 
 <script>
     const selectedButtons = document.querySelectorAll('.btn');
-    const correctAnswer = document.querySelector('.correct');
-    const wrongAnswer = document.querySelector('.wrong');
     const feedback = document.querySelector('.feedback');
     const feedbackTitle = document.querySelector('.feedback-title');
     const feedbackFact = document.querySelector('.feedback-fact');
-
-
 
     function select(btn) {
         const letter = btn.querySelector('.letter');
@@ -202,8 +198,7 @@
             feedback.classList.add("wrong");
             feedbackTitle.innerHTML = 'Oopsi!';
             feedbackTitle.classList.remove('hidden');
-            feedbackFact.innerHTML = "Va dans la direction de nord-est!";
-
+            feedbackFact.innerHTML = "126&deg; SE";
         }
         selectedButtons.forEach(b => b.disabled = true);
     } </script>
